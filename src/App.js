@@ -7,7 +7,7 @@ import { MyContent } from './MyContent';
 function App() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [currentData, setCurrentData] = React.useState();
-  const allData = [0, 'fail', 1];
+  const allData = [0, 'fail0', 1, 'fail1'];
 
   return (
     <div className="App">
