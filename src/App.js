@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+import * as React from 'react';
 import './App.css';
+import { Button, Table } from 'semantic-ui-react';
+import { MyModal } from './MyModal';
+import { MyContent } from './MyContent';
 
 function App() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [currentData, setCurrentData] = React.useState();
+  const allData = [0, 'fail', 1];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MyModal open={isOpen} onClose={() => setIsOpen(false)}>
+        {isOpen && <MyContent testProp={currentData} />}
+      </MyModal>
+      <Table>
+        <Table.Body>
+          {allData.map(d => (<Table.Row key={d}>
+            <Table.Cell>
+              {d}
+            </Table.Cell>
+            <Table.Cell>
+              <Button primary onClick={() => {
+                setCurrentData(d);
+                setIsOpen(true);
+              }}>Test</Button>
+            </Table.Cell>
+          </Table.Row>))}
+        </Table.Body>
+      
+        </Table>
     </div>
   );
 }
